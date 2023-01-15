@@ -4,15 +4,28 @@ export interface Env {
 
 function getURL(requestUrl: string) {
   const url = new URL(requestUrl);
-  const path = url.pathname.substring(4); // assuming path starts with /r2/
-  return { url, path };
+  const key = url.pathname.substring(4); // assuming path starts with /r2/
+  return { url, key };
 }
 
-const get: PagesFunction<Env> = async (ctx) => {
-  const { path } = getURL(ctx.request.url);
-  const file = await ctx.env.BUCKET.get(path);
+const head: PagesFunction<Env> = async (ctx) => {
+  const { key } = getURL(ctx.request.url);
+  const file = await ctx.env.BUCKET.head(key);
 
-  console.log({ path, file });
+  if (!file) return new Response(undefined, { status: 404 });
+
+  const headers = new Headers();
+  file.writeHttpMetadata(headers);
+  headers.set("etag", file.httpEtag);
+
+  return new Response(null, { headers });
+};
+
+const get: PagesFunction<Env> = async (ctx) => {
+  const { key } = getURL(ctx.request.url);
+  const file = await ctx.env.BUCKET.get(key);
+
+  console.log({ key, file });
 
   if (!file) return new Response(undefined, { status: 404 });
 
@@ -35,6 +48,7 @@ const post: PagesFunction<Env> = async (ctx) => {
 
 export const onRequest: PagesFunction<Env> = async (ctx) => {
   if (ctx.request.method === "GET") return get(ctx);
+  if (ctx.request.method === "HEAD") return head(ctx);
   if (ctx.request.method === "POST") return post(ctx);
 
   return new Response(undefined, { status: 400 });
