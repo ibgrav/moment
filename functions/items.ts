@@ -9,6 +9,10 @@ export interface Env {
   BUCKET: R2Bucket;
 }
 
-export function onRequest() {
-  return new Response("Hello, world!");
-}
+export const onRequest: PagesFunction<Env> = async (ctx) => {
+  const items = await ctx.env.BUCKET.list();
+
+  console.log({ items });
+
+  return new Response(JSON.stringify({ items }, null, 2));
+};

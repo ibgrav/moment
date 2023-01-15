@@ -1,7 +1,0 @@
-name = "postively"
-compatibility_date = "2023-01-15"
-
-[[r2_buckets]]
-binding = 'BUCKET'
-bucket_name = 'positively'
-preview_bucket_name= 'positively-dev'

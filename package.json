@@ -3,9 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wrangler pages dev --port 3001 --proxy 3000 -- vite dev",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "wrangler pages dev --port=3000 --proxy=4444 --compatibility-date=2023-01-15 -- vite dev",
+    "build": "tsc && vite build"
   },
   "dependencies": {
     "react": "18.2.0",
