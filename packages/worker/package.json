@@ -1,0 +1,15 @@
+{
+  "name": "worker",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "test": "vitest",
+    "publish": "wrangler publish"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20221111.1",
+    "typescript": "^4.9.4",
+    "vitest": "^0.27.1",
+    "wrangler": "^2.7.1"
+  }
+}

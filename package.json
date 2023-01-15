@@ -1,4 +1,5 @@
 {
   "name": "@ibgrav/positively",
+  "packageManager": "pnpm@7.25.0",
   "private": true
 }
