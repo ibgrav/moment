@@ -14,5 +14,5 @@ export const onRequest: PagesFunction<Env> = async (ctx) => {
 
   console.log({ items });
 
-  return new Response(JSON.stringify({ items }, null, 2));
+  return new Response(JSON.stringify({ test: 1, items }, null, 2));
 };
