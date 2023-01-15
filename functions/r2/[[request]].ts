@@ -12,6 +12,8 @@ const get: PagesFunction<Env> = async (ctx) => {
   const { path } = getURL(ctx.request.url);
   const file = await ctx.env.BUCKET.get(path);
 
+  console.log({ path, file });
+
   if (!file) return new Response(undefined, { status: 404 });
 
   const headers = new Headers();
@@ -23,6 +25,8 @@ const get: PagesFunction<Env> = async (ctx) => {
 
 const post: PagesFunction<Env> = async (ctx) => {
   const items = await ctx.env.BUCKET.list();
+
+  console.log({ items });
 
   return new Response(JSON.stringify({ items }, null, 2), {
     headers: { "content-type": "text/html" },
