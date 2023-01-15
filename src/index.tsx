@@ -7,11 +7,11 @@ async function entry() {
   const { data } = await supabase.auth.getUser();
 
   if (data?.user?.id) {
-    const { App } = await import("./app/App");
+    const { App } = await import("./app/aapp");
     render(<App user={data.user} />);
   } else {
-    const { Login } = await import("./app/Login");
-    render(<Login />);
+    const { SignIn } = await import("./app/sign-in");
+    render(<SignIn />);
   }
 }
 
