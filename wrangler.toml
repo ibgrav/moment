@@ -1,5 +1,4 @@
 name = "postively"
-main = "src/index.ts"
 compatibility_date = "2023-01-15"
 
 [[r2_buckets]]
