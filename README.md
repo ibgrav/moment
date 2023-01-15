@@ -2,5 +2,6 @@
 
 ## Architecture
 
-1. Hosting
-    - Cloudflare
+### Hosting
+
+1. Netlify

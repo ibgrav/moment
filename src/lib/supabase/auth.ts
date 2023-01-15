@@ -7,5 +7,8 @@ export async function signout() {
 }
 
 export async function signInWithProvider(provider: Provider) {
-  await supabase.auth.signInWithOAuth({ provider });
+  await supabase.auth.signInWithOAuth({
+    provider,
+    options: { redirectTo: location.href },
+  });
 }
