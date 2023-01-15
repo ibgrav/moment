@@ -1,8 +1,8 @@
 import type { Provider } from "@supabase/supabase-js";
-import { signInWithProvider } from "../lib/supabase/auth";
-import apple from "../assets/apple.png";
-import google from "../assets/google.png";
-import github from "../assets/github.png";
+import { signInWithProvider } from "src/lib/supabase/auth";
+import apple from "src/assets/apple.png";
+import google from "src/assets/google.png";
+import github from "src/assets/github.png";
 
 interface ProviderButton {
   label: string;
@@ -37,7 +37,7 @@ export function SignIn() {
           onClick={() => signInWithProvider(provider)}
           className="flex flex-row justify-center align-center gap-4 h-12 w-64 bg-black text-white py-2 px-4 rounded hover:shadow-sm"
         >
-          <img className="h-full w-auto" src={image} />
+          <img loading="lazy" className="h-full w-auto" src={image} />
           <span className="leading-8">Sign in with {label}</span>
         </button>
       ))}

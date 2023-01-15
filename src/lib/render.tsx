@@ -1,10 +1,6 @@
-import { ReactNode, StrictMode } from "react";
-import ReactDOM from "react-dom/client";
+import { render as renderPreact, JSX } from "preact";
 
-export function render(children: ReactNode) {
+export function render(node: JSX.Element) {
   const rootElement = document.getElementById("root") as HTMLElement;
-
-  const root = ReactDOM.createRoot(rootElement);
-
-  root.render(<StrictMode>{children}</StrictMode>);
+  renderPreact(node, rootElement);
 }

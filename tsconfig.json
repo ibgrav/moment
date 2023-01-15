@@ -3,12 +3,18 @@
 
   "compilerOptions": {
     "jsx": "react-jsx",
+    "jsxImportSource": "preact",
 
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Node",
 
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"]
+    },
 
     "noEmit": true,
     "strict": true,

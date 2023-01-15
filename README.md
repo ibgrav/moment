@@ -1,4 +1,9 @@
-# moment
+# moments
+
+## User Flows
+
+1. Sign Up
+2. Take Image
 
 ## Maintenance
 

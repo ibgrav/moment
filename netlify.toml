@@ -1,0 +1,15 @@
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "deny"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    # Content-Security-Policy = "default-src 'self'"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+
+[dev]
+  command = "vite dev --host"
+  port = 3000
+  targetPort = 5173
+  autoLaunch = false
+  framework = "vite"

@@ -1,10 +1,13 @@
+import { join } from "path";
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import preact from "@preact/preset-vite";
 
 export default defineConfig({
-  plugins: [react()],
-  server: { port: 3000 },
+  plugins: [preact()],
+  resolve: {
+    alias: { src: join(process.cwd(), "src") },
+  },
   build: {
-    assetsInlineLimit: 10000,
+    assetsInlineLimit: 0,
   },
 });

@@ -1,5 +1,5 @@
 import { Provider } from "@supabase/supabase-js";
-import { supabase } from "./client";
+import { supabase } from "src/lib/supabase/client";
 
 export async function signout() {
   await supabase.auth.signOut();
