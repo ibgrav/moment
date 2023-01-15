@@ -15,6 +15,10 @@ const buttons: ProviderButton[] = [
     label: "GitHub",
     provider: "github",
   },
+  {
+    label: "Apple",
+    provider: "apple",
+  },
 ];
 
 export function Login() {
