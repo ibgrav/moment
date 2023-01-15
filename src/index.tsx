@@ -1,18 +1,16 @@
 import "src/index.css";
 
+import { render } from "preact";
 import { supabase } from "src/lib/supabase/client";
-import { render } from "src/lib/render";
+import { App } from "./app/app";
+import { user } from "./lib/signals";
 
 async function entry() {
   const { data } = await supabase.auth.getUser();
+  if (data.user) user.value = data.user;
 
-  if (data?.user?.id) {
-    const { App } = await import("./app/app");
-    render(<App user={data.user} />);
-  } else {
-    const { SignIn } = await import("./app/sign-in");
-    render(<SignIn />);
-  }
+  const rootElement = document.getElementById("root") as HTMLElement;
+  render(<App />, rootElement);
 }
 
 entry();

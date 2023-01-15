@@ -1,22 +1,14 @@
-import { User } from "@supabase/supabase-js";
+import { user } from "src/lib/signals";
 import { signout } from "src/lib/supabase/auth";
+import { Account } from "./account";
 import { Media } from "./media";
 
-interface AppProps {
-  user: User;
-}
-
-export function App({ user }: AppProps) {
+export function App() {
   return (
-    <div className="flex flex-col gap-4">
-      <button onClick={signout}>Sign out</button>
+    <div>
+      {user.value && <Media />}
 
-      <details>
-        <summary>user</summary>
-        <pre>{JSON.stringify(user, null, 2)}</pre>
-      </details>
-
-      <Media />
+      <Account />
     </div>
   );
 }
