@@ -1,5 +1,7 @@
-import { useRef, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
+import { setVideoFromCamera } from "src/lib/media";
 import { imageData, updateImage } from "src/lib/signals";
+import { navHeight } from "./nav";
 
 export function Media() {
   const [inputKey] = useState(Date.now());
@@ -30,7 +32,10 @@ export function Media() {
   };
 
   return (
-    <div>
+    <div
+      style={{ height: `${window.innerHeight - navHeight}px` }}
+      className="h-screen w-screen flex justify-center items-center fixed top-0 left-0"
+    >
       <input
         type="file"
         className="hidden"
@@ -40,12 +45,21 @@ export function Media() {
         onChange={onChangeFile}
       />
 
-      <button onClick={onClickAddPhoto}>{imageData.value ? "Change" : "Add"} Photo</button>
+      {!imageData.value && (
+        <div className="flex flex-col gap-2">
+          <span>Upload your best moment of the day!</span>
+          <button className="border px-4 py-2 rounded-md" onClick={onClickAddPhoto}>
+            Select Photo
+          </button>
+        </div>
+      )}
 
       {imageData.value && (
         <>
-          <button onClick={onClickSavePhoto}>Save Photo</button>
-          <img src={imageData.value} />
+          <button onClick={onClickSavePhoto} className="bg-white absolute bottom-2 left-2 border px-4 py-2 rounded-md">
+            Save Photo
+          </button>
+          <img src={imageData.value} className="h-full w-full object-cover" />
         </>
       )}
     </div>

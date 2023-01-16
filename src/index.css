@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  overscroll-behavior-y: contain;
+#root {
+  @apply w-screen h-screen overflow-hidden fixed top-0 left-0 flex flex-col justify-between;
 }
 
-button {
-  @apply border py-2 px-4 rounded hover:shadow-sm;
+* {
+  -webkit-backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
 }

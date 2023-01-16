@@ -1,10 +1,9 @@
 import type { Provider } from "@supabase/supabase-js";
 import { signInWithProvider, signout } from "src/lib/supabase/auth";
+import { user } from "src/lib/signals";
 import apple from "src/assets/apple.png";
 import google from "src/assets/google.png";
 import github from "src/assets/github.png";
-import { useEffect } from "preact/hooks";
-import { user } from "src/lib/signals";
 
 interface ProviderButton {
   label: string;

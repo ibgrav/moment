@@ -34,6 +34,7 @@ export async function setVideoFromCamera(video: HTMLVideoElement) {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
     video.srcObject = stream;
     video.play();
+    console.log(video);
   } catch (e) {
     console.error(e);
   }

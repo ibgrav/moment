@@ -1,13 +1,11 @@
-import { user } from "src/lib/signals";
-import { Account } from "./account";
 import { Media } from "./media";
+import { Nav } from "./nav";
 
 export function App() {
   return (
-    <div>
-      {user.value && <Media />}
-
-      <Account />
-    </div>
+    <>
+      <Media />
+      <Nav />
+    </>
   );
 }

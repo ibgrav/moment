@@ -1,20 +1,32 @@
 import { join } from "path";
 import { defineConfig } from "vite";
-import preact from "@preact/preset-vite";
+import Preact from "@preact/preset-vite";
+import Icons from "unplugin-icons/vite";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
   plugins: [
-    preact(),
+    Preact(),
+    Icons(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico"],
+      devOptions: { enabled: true },
       manifest: {
         name: "positively",
         short_name: "positively",
         description: "positively",
-        theme_color: "#ffffff",
+        theme_color: "#05AAAA",
         icons: [
+          {
+            src: "/favicon-16x16.png",
+            sizes: "16x16",
+            type: "image/png",
+          },
+          {
+            src: "/favicon-32x32.png",
+            sizes: "32x32",
+            type: "image/png",
+          },
           {
             src: "/favicon-192x192.png",
             sizes: "192x192",
@@ -26,11 +38,6 @@ export default defineConfig({
             type: "image/png",
           },
         ],
-      },
-      devOptions: {
-        enabled: process.env.SW_DEV === "true",
-        type: "module",
-        navigateFallback: "index.html",
       },
     }),
   ],
