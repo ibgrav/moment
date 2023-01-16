@@ -1,13 +1,9 @@
-import { JSX } from "preact";
-import { useEffect, useRef, useState } from "preact/hooks";
-import { ImageDimensions, setVideoFromCamera, getImageFromVideo } from "src/lib/media";
+import { useRef, useState } from "preact/hooks";
+import { imageData, updateImage } from "src/lib/signals";
 
 export function Media() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
   const [inputKey] = useState(Date.now());
-  const [imageData, setImageData] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onClickAddPhoto = () => {
     const input = inputRef.current;
@@ -25,8 +21,7 @@ export function Media() {
         const reader = new FileReader();
 
         reader.addEventListener("load", (e) => {
-          const imageData = e.target?.result as string;
-          setImageData(imageData);
+          updateImage(e.target?.result as string);
         });
 
         reader.readAsDataURL(file);
@@ -45,12 +40,12 @@ export function Media() {
         onChange={onChangeFile}
       />
 
-      <button onClick={onClickAddPhoto}>{imageData ? "Change" : "Add"} Photo</button>
+      <button onClick={onClickAddPhoto}>{imageData.value ? "Change" : "Add"} Photo</button>
 
-      {imageData && (
+      {imageData.value && (
         <>
           <button onClick={onClickSavePhoto}>Save Photo</button>
-          <img src={imageData} />
+          <img src={imageData.value} />
         </>
       )}
     </div>

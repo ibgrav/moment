@@ -2,6 +2,7 @@
 
 node_modules
 .netlify
+dev-dist
 dist
 
 *.env*
